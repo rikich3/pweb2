@@ -1,0 +1,5 @@
+djangoPPT/djangovenv/bin/*
+djangoPPT/djangovenv/lib/*
+djangoPPT/djangovenv/src/__pycache__/*
+__pycache__
+*.pyc
