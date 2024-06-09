@@ -1,0 +1,11 @@
+{%{% extends "home.html" %}%}
+
+{%block content%}
+<main>
+    <h1>Welcome to My Django Website, {{request.user}}</h1>
+    <p>Esta funcionando!</p>
+  </main>
+    <p>{%if request.user.is_authenticated%} You are authenticated!
+        {%else%} You are not authenticated!{%endif%}
+    </p>
+{%endblock%}
