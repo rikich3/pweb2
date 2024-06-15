@@ -3,7 +3,8 @@
 <h2>Persona:</h2>
   <ul>
   {% for item in Persona %}
-    <li>{% if forloop.first %}<strong>{{ item }}</strong>{% else %}{{ item }}{% endif %}</li>
+    <li>{% if forloop.first %}<strong>{{ item|capfirst }}</strong>{% else %}{{ item|capfirst }}{% endif %}</li>
   {% endfor %}
   </ul>
+  <p>It is the {% now "jS \o\f F" %}</p>
 {% endblock %}
