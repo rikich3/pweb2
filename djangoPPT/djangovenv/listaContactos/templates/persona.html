@@ -3,7 +3,7 @@
 <h2>Persona:</h2>
   <ul>
   {% for item in Persona %}
-    <li>{{ item }}</li>
+    <li>{% if forloop.first %}<strong>{{ item }}</strong>{% else %}{{ item }}{% endif %}</li>
   {% endfor %}
   </ul>
 {% endblock %}
