@@ -1,0 +1,11 @@
+{%extends 'home.html'%}
+{%block content%}
+<form method="POST">
+  {% csrf_token %}
+  {{ form.as_p }}
+  <button type="submit">Busca una Persona</button>
+</form>
+
+{% if error_message %}
+  <p>{{ error_message }}</p>
+{% endif %}

@@ -20,3 +20,18 @@ def addPersona(request):
     'form': form
   }
   return render(request, 'personas/addPersona.html', addContext)
+def searchPersona(request):
+  if request.method == 'POST':
+    form = PersonaForm(request.POST)
+    if form.is_valid():
+        name = form.cleaned_data['name']
+        try:
+            persona = Persona.objects.get(nombre=name)
+            return render(request, 'persona_detail.html', {'persona': persona})
+        except Persona.DoesNotExist:
+            error_message = "Persona with name '{}' does not exist.".format(name)
+            return render(request, 'search_persona.html', {'form': form, 'error_message': error_message})
+    else:
+        form = PersonaForm()
+
+  return render(request, 'personas/searchPersona.html')
