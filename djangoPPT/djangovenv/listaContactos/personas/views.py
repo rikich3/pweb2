@@ -1,8 +1,15 @@
 from django.shortcuts import render
 from .models import Persona
-from .personaForm import PersonaForm
+from .personaForm import PersonaForm, RawPersonaForm
 
 # Create your views here.
+def createUpdatePersona(request):
+  form = RawPersonaForm()
+  context = {
+    'form': form
+  }
+  return render(request, 'personas/createUpdatePersona.html', context)
+
 def inspectPersona(request):
   id = request.GET.get('id', '0')
   person = Persona.objects.get(id=id)
