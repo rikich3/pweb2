@@ -6,10 +6,11 @@ from .personaForm import PersonaForm, RawPersonaForm
 def createUpdatePersona(request):
   form = RawPersonaForm()
   if(request.method == 'POST'):
-    form = RawPersonaForm(request.POST)
+    firstPerson = Persona.objects.first()
+    form = RawPersonaForm(request.POST, instance = firstPerson)
     if form.is_valid():
-      print(form.cleaned_data)
-      Persona.objects.create(**form.cleaned_data)
+      form.save()
+      form = RawPersonaForm()
     else:
       print(form.errors)
   context = {
