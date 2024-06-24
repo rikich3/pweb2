@@ -1,4 +1,4 @@
-from django.shortcuts import get_object_or_404, render
+from django.shortcuts import get_object_or_404, redirect, render
 from .models import Persona
 from .personaForm import PersonaForm, RawPersonaForm
 
@@ -35,6 +35,7 @@ def erasePersona(request, targetID):
   obj = get_object_or_404(Persona, id = targetID)
   if request.method == 'POST':
     obj.delete()
+    return redirect('../../')
   context = {
     'object': obj
   }
