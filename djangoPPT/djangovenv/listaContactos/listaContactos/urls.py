@@ -18,9 +18,12 @@ from django.contrib import admin
 from django.urls import path
 from inicio.views import myHomeView
 from inicio.views import anotherView
-from personas.views import inspectPersona, addPersona, searchPersona, createUpdatePersona
+from personas.views import *
+
 
 urlpatterns = [
+    path('CRUDpersona/<int:miID>/delete/', erasePersona, name='erasePersona'),
+    path('CRUDpersona/<int:miID>/', UpdatePersona, name='UpdatePersona'),
     path('CRUDpersona/', createUpdatePersona, name='CRUDpersona'),
     path('admin/', admin.site.urls),
     path('inicio/', myHomeView, name='inicio'),

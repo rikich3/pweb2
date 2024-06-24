@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import get_object_or_404, render
 from .models import Persona
 from .personaForm import PersonaForm, RawPersonaForm
 
@@ -17,6 +17,28 @@ def createUpdatePersona(request):
     'form': form
   }
   return render(request, 'personas/createUpdatePersona.html', context)
+def UpdatePersona(request, miID):
+  firstPerson = Persona.objects.get(id = miID)
+  form = RawPersonaForm(request.POST, instance = firstPerson)
+  if(request.method == 'POST'):
+    if form.is_valid():
+      form.save()
+      form = RawPersonaForm()
+    else:
+      print(form.errors)
+  context = {
+    'form': form
+  }
+  return render(request, 'personas/createUpdatePersona.html', context)
+
+def erasePersona(request, targetID):
+  obj = get_object_or_404(Persona, id = targetID)
+  if request.method == 'POST':
+    obj.delete()
+  context = {
+    'object': obj
+  }
+  return render(request, 'personas/confirmDelete.html', context)
 
 def inspectPersona(request):
   id = request.GET.get('id', '0')
