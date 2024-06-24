@@ -1,6 +1,7 @@
 from django.shortcuts import get_object_or_404, redirect, render
 from .models import Persona
 from .personaForm import PersonaForm, RawPersonaForm
+from django.views.generic import ListView
 
 # Create your views here.
 def createUpdatePersona(request):
@@ -73,3 +74,9 @@ def searchPersona(request):
         form = PersonaForm()
 
   return render(request, 'personas/searchPersona.html')
+
+class PersonalListView(ListView):
+  template_name = 'personas/persona_list.html'
+  queryset = Persona.objects.all()
+  model = Persona
+  

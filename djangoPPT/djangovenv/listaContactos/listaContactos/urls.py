@@ -28,7 +28,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('inicio/', myHomeView, name='inicio'),
     path('another/', anotherView, name='another'),
-    path('persona/', inspectPersona, name='persona'),
+    path('personas/', admin.site.urls),
     path('addPersona/', addPersona, name='addPersona'),
     path('searchPersona/', searchPersona, name='searchPersona')
 ]
